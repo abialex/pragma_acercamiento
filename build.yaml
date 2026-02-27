@@ -1,0 +1,8 @@
+# Configuration for ObjectBox code generation
+targets:
+  $default:
+    builders:
+      objectbox_generator:
+        options:
+          # Output file name (default: lib/objectbox.g.dart)
+          output: lib/objectbox.g.dart

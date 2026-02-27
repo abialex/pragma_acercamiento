@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Widgetbook",
+			"type": "shell",
+			"command": "fvm flutter run lib/main.dart -d chrome",
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

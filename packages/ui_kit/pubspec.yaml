@@ -1,0 +1,43 @@
+name: ui_kit
+description: UI Kit for Pragma - Design System with Atomic components and theming
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ^3.35.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  assets:
+    - assets/fonts/BasicSans/
+    - assets/fonts/NeueHaasUnica/
+    - assets/icons/
+
+  fonts:
+    - family: BasicSans
+      fonts:
+        - asset: assets/fonts/BasicSans/BasicSans-Regular_demo.otf
+        - asset: assets/fonts/BasicSans/BasicSans-Bold_demo.otf
+          weight: 700
+        - asset: assets/fonts/BasicSans/BasicSans-Black_demo.otf
+          weight: 900
+
+    - family: NeueHaasUnica
+      fonts:
+        - asset: assets/fonts/NeueHaasUnica/NeueHaasUnica-Regular.ttf
+        - asset: assets/fonts/NeueHaasUnica/NeueHaasUnica-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NeueHaasUnica/NeueHaasUnica-Bold.ttf
+          weight: 700

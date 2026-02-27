@@ -1,0 +1,26 @@
+name: local_storage_manager
+description: Local storage abstraction layer using ObjectBox
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.9.2
+  flutter: ^3.35.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  objectbox: ^5.2.0
+  objectbox_flutter_libs: ^5.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+  # ObjectBox code generator
+  build_runner: ^2.4.13
+  objectbox_generator: ^5.2.0
+
+flutter:
