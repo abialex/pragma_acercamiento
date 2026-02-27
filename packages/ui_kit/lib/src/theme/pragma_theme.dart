@@ -242,7 +242,7 @@ class PragmaTheme {
           onBackground: PragmaColors.white,
           onSurface: PragmaColors.white,
           onSurfaceVariant: PragmaColors.glassWhite,
-          outline: PragmaColors.white.withOpacity(0.05),
+          outline: PragmaColors.white.withValues(alpha: 0.05),
         ),
       ],
       inputDecorationTheme: InputDecorationTheme(

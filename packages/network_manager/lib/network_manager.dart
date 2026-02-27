@@ -1,4 +1,4 @@
-library network_manager;
+library;
 
 export 'src/i_network_client.dart';
 export 'src/dio_network_client.dart';

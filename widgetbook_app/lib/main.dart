@@ -51,7 +51,8 @@ class WidgetbookApp extends StatelessWidget {
 
         // Text scale add-on for accessibility
         TextScaleAddon(
-          scales: [1.0, 1.5, 2.0],
+          min: 1.0,
+          max: 2.0,
         ),
 
         // Locale add-on for internationalization (optional)

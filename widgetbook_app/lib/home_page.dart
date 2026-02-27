@@ -19,7 +19,7 @@ class WidgetbookHomePage extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.white,
-                ColorPrimitives.neutral50.withOpacity(0.3),
+                ColorPrimitives.neutral50.withValues(alpha: 0.3),
               ],
             ),
           ),
@@ -116,7 +116,7 @@ class WidgetbookHomePage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: ColorPrimitives.orangePrimary50.withOpacity(0.5),
+              color: ColorPrimitives.orangePrimary50.withValues(alpha: 0.5),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: ColorPrimitives.orangePrimary500, size: 24),

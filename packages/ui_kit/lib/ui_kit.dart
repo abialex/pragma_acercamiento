@@ -1,5 +1,5 @@
 // UI Kit - Autoplan Design System
-library ui_kit;
+library;
 
 // Core
 export 'src/core/enums/app_background_type_enum.dart';
