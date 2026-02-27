@@ -6,6 +6,9 @@ import 'package:pragma_acercamiento/data/datasources/i_cat_remote_datasource.dar
 import 'package:pragma_acercamiento/data/repositories/cat_local_repository_impl.dart';
 import 'package:pragma_acercamiento/domain/repositories/i_cat_local_repository.dart';
 import 'package:pragma_acercamiento/flavors/flavor_config.dart';
+import 'package:pragma_acercamiento/data/services/cat_service.dart';
+import 'package:pragma_acercamiento/domain/repositories/cat_repository.dart';
+import 'package:pragma_acercamiento/data/repositories/cat_repository_impl.dart';
 
 /// Global service locator instance
 final getItApp = GetIt.instance;
@@ -43,12 +46,14 @@ class InjectionContainer {
     // =========================================================================
 
     getItApp.registerLazySingleton<ICatRemoteDataSource>(() => const CatRemoteDataSourceImpl());
+    getItApp.registerLazySingleton<CatService>(() => CatService(getItApp<AppNetworkClient>()));
 
     // =========================================================================
     // Repositories
     // =========================================================================
 
     getItApp.registerLazySingleton<ICatLocalRepository>(() => CatLocalRepositoryImpl(getItApp<ILocalStorage>()));
+    getItApp.registerLazySingleton<CatRepository>(() => CatRepositoryImpl(getItApp<CatService>()));
 
     // =========================================================================
     // Use Cases - Add your use cases here
