@@ -5,5 +5,6 @@ part 'cat_list_state.freezed.dart';
 
 @freezed
 abstract class CatListState with _$CatListState {
-  const factory CatListState({@Default(false) bool isLoading, @Default([]) List<CatBreed> catsList}) = _CatListState;
+  const factory CatListState({@Default(false) bool isLoading, @Default([]) List<CatBreed> catsList, @Default(false) bool isFavoritesMode}) =
+      _CatListState;
 }

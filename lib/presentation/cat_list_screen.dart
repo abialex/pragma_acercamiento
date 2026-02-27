@@ -63,7 +63,11 @@ class _CatListScreenState extends State<CatListScreen> {
           isFavoriteExtractor: (cat) => cat.isFavorite,
           onLoadMore: _onLoadMore,
           onToggleFavorite: (isActive) {
-            debugPrint('Toggle favorite header: $isActive');
+            // Pasamos el filtro actual por si hay una búsqueda activa
+            context.read<CatListCubit>().toggleFavoritesMode(
+              isActive,
+              filter: CatFilterModel(page: 0, limit: 10, search: _currentSearch.isNotEmpty ? _currentSearch : null),
+            );
           },
           onSearchChanged: _onSearchChanged,
           onCatFavoriteTap: (cat) {
