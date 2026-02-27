@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:pragma_acercamiento/presentation/splash/splash_page.dart';
 import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
+import 'package:pragma_acercamiento/presentation/splash_screen.dart';
 
 @UseCase(name: 'Default', type: AppBasePage)
 Widget appBasePageUseCase(BuildContext context) {
