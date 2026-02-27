@@ -7,12 +7,7 @@ import 'main.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  FlavorConfig.setFlavor(
-    flavor: Flavor.dev,
-    apiBaseUrl: 'https://dev-api.pragma.com',
-    appName: 'Pragma (DEV)',
-    isProduction: false,
-  );
+  FlavorConfig.setFlavor(flavor: Flavor.dev, apiBaseUrl: 'https://api.thecatapi.com/v1', appName: 'Pragma (DEV)', isProduction: false);
 
   // Initialize all dependencies
   await InjectionContainer().init();

@@ -47,7 +47,7 @@ class AppAttributeCard extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
               const SizedBox(height: 4),
-              AppText(value, variant: AppTextStyle.h3, color: colorRoles.onSurface, fontWeight: FontWeight.bold),
+              AppText(value, variant: AppTextStyle.h4, color: colorRoles.onSurface, fontWeight: FontWeight.bold),
             ],
           ),
         ],

@@ -44,11 +44,11 @@ class AppCatCard extends StatelessWidget {
           children: [
             // Header: Nombre + iconos de acción
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               child: Row(
                 children: [
                   Expanded(
-                    child: AppText(breedName, variant: AppTextStyle.h3, color: colorRoles.onSurface, fontWeight: FontWeight.bold),
+                    child: AppText(breedName, variant: AppTextStyle.h4, color: colorRoles.onSurface, fontWeight: FontWeight.bold),
                   ),
                   IconButton(
                     onPressed: onFavoriteTap,
@@ -70,7 +70,9 @@ class AppCatCard extends StatelessWidget {
             ),
 
             // Imagen central
-            AppImage.asset(AppAssets.defaultPlaceholder, height: 250, width: double.infinity),
+            imageUrl.isNotEmpty
+                ? AppImage.network(imageUrl, height: 250, width: double.infinity, fit: BoxFit.fitWidth)
+                : const AppImage.asset(AppAssets.defaultPlaceholder, height: 250, width: double.infinity),
 
             // Footer: País e Inteligencia
             Padding(

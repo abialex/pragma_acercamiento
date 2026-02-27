@@ -85,8 +85,8 @@ class AppImage extends StatelessWidget {
           fit: fit,
           placeholder: (context, url) => _loadingWidget(),
           errorWidget: (context, url, error) => _errorWidget(),
-          memCacheWidth: rWidth?.toInt(),
-          memCacheHeight: rHeight?.toInt(),
+          memCacheWidth: rWidth != null && rWidth.isFinite ? rWidth.toInt() : null,
+          memCacheHeight: rHeight != null && rHeight.isFinite ? rHeight.toInt() : null,
         );
       case _AppImageType.asset:
         return Image.asset(source, width: rWidth, height: rHeight, fit: fit, color: color, package: _uiPackageName);

@@ -14,13 +14,18 @@ class CatDetailScreen extends StatelessWidget {
       item: cat,
       backgroundType: AppBackgroundType.darkSolid,
       nameExtractor: (c) => c.name,
-      imageUrlExtractor: (c) => c.imageUrl ?? 'https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg',
+      imageUrlExtractor: (c) => c.imageUrl ?? '',
       originExtractor: (c) => c.origin ?? 'Desconocido',
       intelligenceExtractor: (c) => c.intelligence ?? 0,
       isFavoriteExtractor: (c) => c.isFavorite,
-      descriptionExtractor: (c) => 'Esta es una descripción de prueba para la raza ${c.name}. Son gatos muy interesantes y divertidos.',
-      adaptabilityExtractor: (c) => 5, // Fake data for now
-      lifeSpanExtractor: (c) => '12 - 15', // Fake data for now
+      descriptionExtractor: (c) => c.description ?? 'No hay descripción disponible para esta raza.',
+      adaptabilityExtractor: (c) => c.adaptability ?? 0,
+      affectionLevelExtractor: (c) => c.affectionLevel ?? 0,
+      childFriendlyExtractor: (c) => c.childFriendly ?? 0,
+      dogFriendlyExtractor: (c) => c.dogFriendly ?? 0,
+      energyLevelExtractor: (c) => c.energyLevel ?? 0,
+      groomingExtractor: (c) => c.grooming ?? 0,
+      lifeSpanExtractor: (c) => c.lifeSpan ?? 'Desconocido',
       temperamentExtractor: (c) => c.temperament ?? '',
       onBack: () => context.pop(),
       onToggleFavorite: (isActive) {

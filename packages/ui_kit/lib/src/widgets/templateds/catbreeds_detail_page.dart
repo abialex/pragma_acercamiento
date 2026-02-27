@@ -13,6 +13,11 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
     required this.adaptabilityExtractor,
     required this.lifeSpanExtractor,
     required this.backgroundType,
+    this.affectionLevelExtractor,
+    this.childFriendlyExtractor,
+    this.dogFriendlyExtractor,
+    this.energyLevelExtractor,
+    this.groomingExtractor,
     this.temperamentExtractor,
     this.onBack,
     this.onToggleFavorite,
@@ -28,6 +33,11 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
   final String Function(T) descriptionExtractor;
   final int Function(T) adaptabilityExtractor;
   final String Function(T) lifeSpanExtractor;
+  final int Function(T)? affectionLevelExtractor;
+  final int Function(T)? childFriendlyExtractor;
+  final int Function(T)? dogFriendlyExtractor;
+  final int Function(T)? energyLevelExtractor;
+  final int Function(T)? groomingExtractor;
   final String Function(T)? temperamentExtractor;
 
   final AppBackgroundType backgroundType;
@@ -52,54 +62,58 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
               icon: const AppIcon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
               onPressed: onBack,
             ),
-            title: AppText(nameExtractor(item), variant: AppTextStyle.h2, color: Colors.white, fontWeight: FontWeight.bold),
+            title: AppText(nameExtractor(item), variant: AppTextStyle.h4, color: Colors.white, fontWeight: FontWeight.bold),
             centerTitle: true,
             actions: [
               _FavoriteToggleAction(initialFavoriteActive: isFavoriteExtractor(item), onToggleFavorite: onToggleFavorite),
               const SizedBox(width: 8),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  AppImage.network(imageUrlExtractor(item), fit: BoxFit.cover),
-                  // Gradient overlay to ensure text/icons are visible
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Colors.black.withOpacity(0.7), Colors.transparent, Colors.black.withOpacity(0.8)],
+              background: ClipRRect(
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    AppImage.network(imageUrlExtractor(item), fit: BoxFit.cover),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.black.withValues(alpha: 0.7), Colors.transparent, Colors.black.withValues(alpha: 0.8)],
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    bottom: 16,
-                    left: 24,
-                    right: 24,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            AppTag(label: originExtractor(item).toUpperCase()),
-                            const SizedBox(width: 8),
-                            AppTag(label: 'NIVEL ${intelligenceExtractor(item)}', style: AppTagStyle.secondary),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        AppText(nameExtractor(item), variant: AppTextStyle.h1, color: Colors.white, fontWeight: FontWeight.bold),
-                      ],
+                    Positioned(
+                      bottom: 16,
+                      left: 24,
+                      right: 24,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              AppTag(label: originExtractor(item).toUpperCase()),
+                              const SizedBox(width: 8),
+                              AppTag(label: 'NIVEL ${intelligenceExtractor(item)}', style: AppTagStyle.secondary),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          // AppText(nameExtractor(item), variant: AppTextStyle.h4, color: Colors.white, fontWeight: FontWeight.bold),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+
               children: [
+                const SizedBox(height: 24),
                 // Personality Tags
                 if (temperamentList.isNotEmpty) ...[
                   const AppText('PERSONALIDAD', variant: AppTextStyle.caption, color: Colors.indigoAccent, fontWeight: FontWeight.bold),
@@ -111,10 +125,29 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
                 AppText(descriptionExtractor(item), variant: AppTextStyle.body1, color: Colors.white70),
                 const SizedBox(height: 32),
                 // Attributes
-                AppAttributeCard(label: 'ADAPTABILIDAD', value: '${adaptabilityExtractor(item)}/5', icon: Icons.favorite_border),
+                if (affectionLevelExtractor != null) ...[
+                  AppAttributeCard(label: 'NIVEL DE AFECTO', value: '${affectionLevelExtractor!(item)}/5', icon: Icons.favorite),
+                  const SizedBox(height: 16),
+                ],
+                AppAttributeCard(label: 'ADAPTABILIDAD', value: '${adaptabilityExtractor(item)}/5', icon: Icons.autorenew),
                 const SizedBox(height: 16),
+                if (childFriendlyExtractor != null) ...[
+                  AppAttributeCard(label: 'AMIGABLE CON NIÑOS', value: '${childFriendlyExtractor!(item)}/5', icon: Icons.child_care),
+                  const SizedBox(height: 16),
+                ],
+                if (dogFriendlyExtractor != null) ...[
+                  AppAttributeCard(label: 'AMIGABLE CON PERROS', value: '${dogFriendlyExtractor!(item)}/5', icon: Icons.pets),
+                  const SizedBox(height: 16),
+                ],
+                if (energyLevelExtractor != null) ...[
+                  AppAttributeCard(label: 'NIVEL DE ENERGÍA', value: '${energyLevelExtractor!(item)}/5', icon: Icons.bolt),
+                  const SizedBox(height: 16),
+                ],
+                if (groomingExtractor != null) ...[
+                  AppAttributeCard(label: 'CUIDADO/ASEO', value: '${groomingExtractor!(item)}/5', icon: Icons.cleaning_services),
+                  const SizedBox(height: 16),
+                ],
                 AppAttributeCard(label: 'VIDA PROMEDIO', value: lifeSpanExtractor(item), icon: Icons.info_outline),
-                // Add more attributes as needed based on the design
                 const SizedBox(height: 48), // Bottom padding
               ],
             ),

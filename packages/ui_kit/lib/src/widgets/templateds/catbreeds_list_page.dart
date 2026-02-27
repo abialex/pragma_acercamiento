@@ -11,10 +11,12 @@ class CatbreedsListPage<T> extends StatefulWidget {
     required this.isFavoriteExtractor,
     required this.backgroundType,
     this.initialFavoriteActive = false,
+    this.isLoading = false,
     this.onToggleFavorite,
     this.onSearchChanged,
     this.onCatFavoriteTap,
     this.onCatTap,
+    this.onLoadMore,
     super.key,
   });
 
@@ -27,10 +29,12 @@ class CatbreedsListPage<T> extends StatefulWidget {
 
   final AppBackgroundType backgroundType;
   final bool initialFavoriteActive;
+  final bool isLoading;
   final ValueChanged<bool>? onToggleFavorite;
   final ValueChanged<String>? onSearchChanged;
   final Function(T item)? onCatFavoriteTap;
   final Function(T item)? onCatTap;
+  final VoidCallback? onLoadMore;
 
   @override
   State<CatbreedsListPage<T>> createState() => _CatbreedsListPageState<T>();
@@ -38,17 +42,29 @@ class CatbreedsListPage<T> extends StatefulWidget {
 
 class _CatbreedsListPageState<T> extends State<CatbreedsListPage<T>> {
   late final ValueNotifier<bool> _isFavoriteActiveNotifier;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _isFavoriteActiveNotifier = ValueNotifier<bool>(widget.initialFavoriteActive);
+    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
     _isFavoriteActiveNotifier.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+      if (!widget.isLoading) {
+        widget.onLoadMore?.call();
+      }
+    }
   }
 
   void _handleToggleFavorite() {
@@ -84,9 +100,16 @@ class _CatbreedsListPageState<T> extends State<CatbreedsListPage<T>> {
           const SizedBox(height: 24),
           Expanded(
             child: ListView.separated(
-              itemCount: widget.items.length,
+              controller: _scrollController,
+              itemCount: widget.items.length + (widget.isLoading ? 1 : 0),
               separatorBuilder: (context, index) => const SizedBox(height: 24),
               itemBuilder: (context, index) {
+                if (index == widget.items.length) {
+                  return const Center(
+                    child: Padding(padding: EdgeInsets.all(16.0), child: CircularProgressIndicator()),
+                  );
+                }
+
                 final item = widget.items[index];
                 return AppCatCard(
                   breedName: widget.nameExtractor(item),

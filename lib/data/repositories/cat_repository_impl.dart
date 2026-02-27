@@ -20,6 +20,14 @@ class CatRepositoryImpl implements CatRepository {
           intelligence: item.intelligence,
           imageUrl: item.referenceImageId != null ? 'https://cdn2.thecatapi.com/images/${item.referenceImageId}.jpg' : null,
           temperament: item.temperament,
+          description: item.description,
+          lifeSpan: item.lifeSpan,
+          adaptability: item.adaptability,
+          affectionLevel: item.affectionLevel,
+          childFriendly: item.childFriendly,
+          dogFriendly: item.dogFriendly,
+          energyLevel: item.energyLevel,
+          grooming: item.grooming,
         );
       }).toList();
     } catch (e) {
