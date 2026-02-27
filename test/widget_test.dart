@@ -9,11 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:pragma_acercamiento/main.dart';
+import 'package:pragma_acercamiento/flavors/flavor_config.dart';
+import 'package:pragma_acercamiento/flavors/flavor.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    // 1. Necesitamos inicializar FlavorConfig porque MyHomePage lo utiliza internamente
+    FlavorConfig.setFlavor(flavor: Flavor.dev, apiBaseUrl: 'https://api.test.com', appName: 'Pragma Test', isProduction: false);
+
+    // 2. En lugar de bombear MyApp() (que requiere todas las dependencias y enrutamiento),
+    // bombeamos MyHomePage directamente dentro de un MaterialApp básico.
+    await tester.pumpWidget(const MaterialApp(home: MyHomePage(title: 'Pragma Test')));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
