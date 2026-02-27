@@ -7,15 +7,12 @@ import 'main.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  FlavorConfig.setFlavor(
-    flavor: Flavor.prod,
-    apiBaseUrl: 'https://api.pragma.com',
-    appName: 'Pragma',
-    isProduction: true,
-  );
+  FlavorConfig.setFlavor(flavor: Flavor.prod, apiBaseUrl: 'https://api.pragma.com', appName: 'Pragma', isProduction: true);
 
   // Initialize all dependencies
-  await InjectionContainer().init();
+  final di = InjectionContainer();
+  await di.init();
+  await di.completeObjectBoxInitialization();
 
   runApp(const MyApp());
 }

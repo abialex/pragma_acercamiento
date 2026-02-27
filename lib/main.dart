@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pragma_acercamiento/presentation/cubit/cat_list/cat_list_cubit.dart';
 import 'package:pragma_acercamiento/domain/repositories/cat_repository.dart';
 import 'package:pragma_acercamiento/core/di/injection_container.dart';
+import 'package:pragma_acercamiento/domain/repositories/i_cat_local_repository.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CatListCubit(getItApp<CatRepository>()),
+      create: (_) => CatListCubit(getItApp<CatRepository>(), getItApp<ICatLocalRepository>()),
       child: UIkitConfigProvider(
         designWidth: 393,
         designHeight: 852,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ui_kit/ui_kit.dart';
 import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
+import 'package:pragma_acercamiento/presentation/cubit/cat_list/cat_list_cubit.dart';
 
 class CatDetailScreen extends StatelessWidget {
   const CatDetailScreen({super.key, required this.cat});
@@ -29,7 +31,7 @@ class CatDetailScreen extends StatelessWidget {
       temperamentExtractor: (c) => c.temperament ?? '',
       onBack: () => context.pop(),
       onToggleFavorite: (isActive) {
-        debugPrint('Toggle favorite on detail: $isActive');
+        context.read<CatListCubit>().toggleFavorite(cat.breedId);
       },
     );
   }

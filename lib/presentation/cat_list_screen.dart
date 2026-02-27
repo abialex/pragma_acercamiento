@@ -67,8 +67,7 @@ class _CatListScreenState extends State<CatListScreen> {
           },
           onSearchChanged: _onSearchChanged,
           onCatFavoriteTap: (cat) {
-            debugPrint('Toggle favorito id: ${cat.breedId}');
-            // Implementar actualización del estado real
+            context.read<CatListCubit>().toggleFavorite(cat.breedId);
           },
           onCatTap: (cat) {
             context.pushNamed(CatRoutes.detailcat.name, extra: cat);

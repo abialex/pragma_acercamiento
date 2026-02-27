@@ -10,7 +10,9 @@ void main() async {
   FlavorConfig.setFlavor(flavor: Flavor.dev, apiBaseUrl: 'https://api.thecatapi.com/v1', appName: 'Pragma (DEV)', isProduction: false);
 
   // Initialize all dependencies
-  await InjectionContainer().init();
+  final di = InjectionContainer();
+  await di.init();
+  await di.completeObjectBoxInitialization();
 
   runApp(const MyApp());
 }
