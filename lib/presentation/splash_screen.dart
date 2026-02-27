@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/ui_kit.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pragma_acercamiento/config/router/cat_routes.dart';
 // If using go_router you might navigate to the main screen after a delay.
 
 class SplashPage extends StatefulWidget {
@@ -15,7 +17,9 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     // Simulate initialization delay
     Future.delayed(const Duration(seconds: 3), () {
-      // Typically context.go('/home')
+      if (mounted) {
+        context.goNamed(CatRoutes.listcat.name);
+      }
     });
   }
 
