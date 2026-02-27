@@ -97,29 +97,26 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Personality Tags
-                  if (temperamentList.isNotEmpty) ...[
-                    const AppText('PERSONALIDAD', variant: AppTextStyle.caption, color: Colors.indigoAccent, fontWeight: FontWeight.bold),
-                    const SizedBox(height: 12),
-                    Wrap(spacing: 8, runSpacing: 12, children: temperamentList.map((tag) => AppTag(label: tag)).toList()),
-                    const SizedBox(height: 32),
-                  ],
-                  // Description
-                  AppText(descriptionExtractor(item), variant: AppTextStyle.body1, color: Colors.white70),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Personality Tags
+                if (temperamentList.isNotEmpty) ...[
+                  const AppText('PERSONALIDAD', variant: AppTextStyle.caption, color: Colors.indigoAccent, fontWeight: FontWeight.bold),
+                  const SizedBox(height: 12),
+                  Wrap(spacing: 8, runSpacing: 12, children: temperamentList.map((tag) => AppTag(label: tag)).toList()),
                   const SizedBox(height: 32),
-                  // Attributes
-                  AppAttributeCard(label: 'ADAPTABILIDAD', value: '${adaptabilityExtractor(item)}/5', icon: Icons.favorite_border),
-                  const SizedBox(height: 16),
-                  AppAttributeCard(label: 'VIDA PROMEDIO', value: lifeSpanExtractor(item), icon: Icons.info_outline),
-                  // Add more attributes as needed based on the design
-                  const SizedBox(height: 48), // Bottom padding
                 ],
-              ),
+                // Description
+                AppText(descriptionExtractor(item), variant: AppTextStyle.body1, color: Colors.white70),
+                const SizedBox(height: 32),
+                // Attributes
+                AppAttributeCard(label: 'ADAPTABILIDAD', value: '${adaptabilityExtractor(item)}/5', icon: Icons.favorite_border),
+                const SizedBox(height: 16),
+                AppAttributeCard(label: 'VIDA PROMEDIO', value: lifeSpanExtractor(item), icon: Icons.info_outline),
+                // Add more attributes as needed based on the design
+                const SizedBox(height: 48), // Bottom padding
+              ],
             ),
           ),
         ],

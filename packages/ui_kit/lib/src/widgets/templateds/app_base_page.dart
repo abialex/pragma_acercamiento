@@ -75,7 +75,7 @@ class _AppBasePageState extends State<AppBasePage> {
           SafeArea(
             top: true,
             child: SizedBox.expand(
-              child: Padding(padding: const EdgeInsets.symmetric(horizontal: 15), child: widget.body),
+              child: Padding(padding: const EdgeInsets.symmetric(horizontal: 25), child: widget.body),
             ),
           ),
         ],
