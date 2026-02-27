@@ -6,11 +6,7 @@ class AppBottomNavItem {
   final Widget icon;
   final Widget activeIcon;
 
-  const AppBottomNavItem({
-    required this.label,
-    required this.icon,
-    Widget? activeIcon,
-  }) : activeIcon = activeIcon ?? icon;
+  const AppBottomNavItem({required this.label, required this.icon, Widget? activeIcon}) : activeIcon = activeIcon ?? icon;
 }
 
 class AppBottomNavigationBar extends StatelessWidget {
@@ -18,12 +14,7 @@ class AppBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
 
-  const AppBottomNavigationBar({
-    required this.items,
-    required this.currentIndex,
-    required this.onTap,
-    super.key,
-  });
+  const AppBottomNavigationBar({required this.items, required this.currentIndex, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +23,8 @@ class AppBottomNavigationBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: colorRoles?.surfaceContainer ?? ColorPrimitives.neutral50,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -5),
-          ),
-        ],
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, -5))],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: SafeArea(
@@ -54,11 +36,7 @@ class AppBottomNavigationBar extends StatelessWidget {
               child: GestureDetector(
                 onTap: () => onTap(index),
                 behavior: HitTestBehavior.opaque,
-                child: _BottomNavItemWidget(
-                  item: items[index],
-                  isSelected: isSelected,
-                  colorRoles: colorRoles,
-                ),
+                child: _BottomNavItemWidget(item: items[index], isSelected: isSelected, colorRoles: colorRoles),
               ),
             );
           }),
@@ -73,11 +51,7 @@ class _BottomNavItemWidget extends StatelessWidget {
   final bool isSelected;
   final ColorRoles? colorRoles;
 
-  const _BottomNavItemWidget({
-    required this.item,
-    required this.isSelected,
-    this.colorRoles,
-  });
+  const _BottomNavItemWidget({required this.item, required this.isSelected, this.colorRoles});
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +65,7 @@ class _BottomNavItemWidget extends StatelessWidget {
       curve: Curves.easeInOut,
       margin: const EdgeInsets.symmetric(horizontal: 4),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-      decoration: BoxDecoration(
-        color: isSelected ? activeColor : inactiveColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
+      decoration: BoxDecoration(color: isSelected ? activeColor : inactiveColor, borderRadius: BorderRadius.circular(20)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -103,10 +74,7 @@ class _BottomNavItemWidget extends StatelessWidget {
             child: KeyedSubtree(
               key: ValueKey(isSelected),
               child: IconTheme(
-                data: IconThemeData(
-                  color: isSelected ? activeContentColor : inactiveContentColor,
-                  size: 24,
-                ),
+                data: IconThemeData(color: isSelected ? activeContentColor : inactiveContentColor, size: 24),
                 child: isSelected ? item.activeIcon : item.icon,
               ),
             ),
@@ -119,11 +87,7 @@ class _BottomNavItemWidget extends StatelessWidget {
               fontSize: 12,
               fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
             ),
-            child: AppText(
-              item.label,
-              variant: AppTextStyle.buttonCaption,
-              color: isSelected ? activeContentColor : inactiveContentColor,
-            ),
+            child: AppText(item.label, variant: AppTextStyle.buttonCaption, color: isSelected ? activeContentColor : inactiveContentColor),
           ),
         ],
       ),

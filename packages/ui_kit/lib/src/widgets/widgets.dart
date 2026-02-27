@@ -20,6 +20,7 @@ export 'molecules/app_action_card.dart';
 export 'molecules/app_card_info.dart';
 export 'molecules/app_link_button.dart';
 export 'molecules/app_dialog.dart';
+export 'molecules/app_error_dialog.dart';
 export 'molecules/app_prompt_card.dart';
 export 'molecules/app_stepper.dart';
 export 'molecules/app_bottom_navigation_bar.dart';

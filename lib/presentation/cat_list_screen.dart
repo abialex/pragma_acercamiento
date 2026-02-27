@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pragma_acercamiento/core/error/failures.dart';
 import 'package:ui_kit/ui_kit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
@@ -33,9 +34,7 @@ class _CatListScreenState extends State<CatListScreen> {
     if (isRefresh) {
       _currentPage = 0;
     }
-    context.read<CatListCubit>().getList(
-      filter: CatFilterModel(page: _currentPage, limit: 10, search: _currentSearch.isNotEmpty ? _currentSearch : null),
-    );
+    _getList();
   }
 
   void _onLoadMore() {
@@ -63,15 +62,11 @@ class _CatListScreenState extends State<CatListScreen> {
           isFavoriteExtractor: (cat) => cat.isFavorite,
           onLoadMore: _onLoadMore,
           onToggleFavorite: (isActive) {
-            // Pasamos el filtro actual por si hay una búsqueda activa
-            context.read<CatListCubit>().toggleFavoritesMode(
-              isActive,
-              filter: CatFilterModel(page: 0, limit: 10, search: _currentSearch.isNotEmpty ? _currentSearch : null),
-            );
+            _toggleFavoritesMode(isActive);
           },
           onSearchChanged: _onSearchChanged,
           onCatFavoriteTap: (cat) {
-            context.read<CatListCubit>().toggleFavorite(cat.breedId);
+            _toggleFavorite(cat);
           },
           onCatTap: (cat) {
             context.pushNamed(CatRoutes.detailcat.name, extra: cat);
@@ -79,5 +74,61 @@ class _CatListScreenState extends State<CatListScreen> {
         );
       },
     );
+  }
+
+  void _toggleFavorite(CatBreed cat) async {
+    final result = await context.read<CatListCubit>().toggleFavorite(cat.breedId);
+    result.mapLeft((failure) {
+      if (failure is FailureLocal) {
+        showDialog(
+          context: context,
+          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+        );
+      }
+    });
+  }
+
+  void _toggleFavoritesMode(bool isActive) async {
+    final result = await context.read<CatListCubit>().toggleFavoritesMode(
+      isActive,
+      filter: CatFilterModel(page: 0, limit: 10, search: _currentSearch.isNotEmpty ? _currentSearch : null),
+    );
+    result.mapLeft((failure) {
+      if (failure is FailureLocal) {
+        showDialog(
+          context: context,
+          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+        );
+      }
+    });
+  }
+
+  void _getList() async {
+    final result = await context.read<CatListCubit>().getList(
+      filter: CatFilterModel(page: _currentPage, limit: 10, search: _currentSearch.isNotEmpty ? _currentSearch : null),
+    );
+    result.mapLeft((failure) {
+      if (failure is FailureLocal) {
+        showDialog(
+          context: context,
+          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+        );
+      }
+    });
   }
 }

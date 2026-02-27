@@ -31,12 +31,15 @@ void main() {
 
       final result = await repository.getBreeds();
 
-      expect(result, isA<List<CatBreed>>());
-      expect(result.length, 1);
-      expect(result.first.breedId, 'beng');
-      expect(result.first.name, 'Bengal');
-      expect(result.first.origin, 'US');
-      expect(result.first.imageUrl, 'https://cdn2.thecatapi.com/images/image123.jpg');
+      result.match((failure) => fail('Should have returned a success response'), (list) {
+        expect(list, isA<List<CatBreed>>());
+        expect(list.length, 1);
+        expect(list.first.breedId, 'beng');
+        expect(list.first.name, 'Bengal');
+        expect(list.first.origin, 'US');
+        expect(list.first.imageUrl, 'https://cdn2.thecatapi.com/images/image123.jpg');
+      });
+
       verify(() => mockCatService.getBreeds(filter: null)).called(1);
     });
   });

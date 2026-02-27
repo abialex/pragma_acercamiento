@@ -1,3 +1,5 @@
+import 'package:fpdart/fpdart.dart';
+import '../../core/error/failures.dart';
 import '../../domain/entities/cat_breed.dart';
 import '../../domain/repositories/cat_repository.dart';
 import '../models/cat_filter_model.dart';
@@ -9,10 +11,10 @@ class CatRepositoryImpl implements CatRepository {
   const CatRepositoryImpl(this.catService);
 
   @override
-  Future<List<CatBreed>> getBreeds({CatFilterModel? filter}) async {
+  Future<Either<FailureApp, List<CatBreed>>> getBreeds({CatFilterModel? filter}) async {
     try {
       final response = await catService.getBreeds(filter: filter);
-      return response.data.map((item) {
+      final list = response.data.map((item) {
         return CatBreed(
           breedId: item.id ?? '',
           name: item.name ?? 'Unknown',
@@ -30,9 +32,10 @@ class CatRepositoryImpl implements CatRepository {
           grooming: item.grooming,
         );
       }).toList();
+      return right(list);
     } catch (e) {
-      // Re-throw or handle error appropriately
-      rethrow;
+      // You can implement specific DioError handling here
+      return left(FailureApi(error: 'Error connecting to API: $e', statusCode: 500));
     }
   }
 }

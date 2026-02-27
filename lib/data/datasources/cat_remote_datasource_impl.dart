@@ -1,38 +1,23 @@
 import '../../domain/entities/cat_breed.dart';
 import 'i_cat_remote_datasource.dart';
 
-/// Mock implementation of ICatRemoteDataSource
-///
-/// This is a placeholder implementation that returns sample data.
-/// Replace this with a real API implementation using your network_manager package.
 class CatRemoteDataSourceImpl implements ICatRemoteDataSource {
-  // TODO: Inject your AppNetworkClient from network_manager package
-  // final AppNetworkClient networkClient;
-
   const CatRemoteDataSourceImpl();
 
   @override
   Future<List<CatBreed>> fetchAllBreeds() async {
-    // TODO: Implement actual API call
-    // Example:
-    // final response = await networkClient.get('/breeds');
-    // return (response.data as List).map((json) => CatBreed.fromJson(json)).toList();
-
-    // Mock data for now
     await Future.delayed(const Duration(milliseconds: 500));
     return _mockBreeds;
   }
 
   @override
   Future<List<CatBreed>> fetchBreedsByOrigin(String origin) async {
-    // TODO: Implement actual API call
     await Future.delayed(const Duration(milliseconds: 300));
     return _mockBreeds.where((breed) => breed.origin == origin).toList();
   }
 
   @override
   Future<CatBreed?> fetchBreedById(String breedId) async {
-    // TODO: Implement actual API call
     await Future.delayed(const Duration(milliseconds: 200));
     try {
       return _mockBreeds.firstWhere((breed) => breed.breedId == breedId);
@@ -43,7 +28,6 @@ class CatRemoteDataSourceImpl implements ICatRemoteDataSource {
 
   @override
   Future<List<CatBreed>> searchBreeds(String query) async {
-    // TODO: Implement actual API call
     await Future.delayed(const Duration(milliseconds: 300));
     final lowerQuery = query.toLowerCase();
     return _mockBreeds.where((breed) {
@@ -51,7 +35,6 @@ class CatRemoteDataSourceImpl implements ICatRemoteDataSource {
     }).toList();
   }
 
-  // Mock data
   static final List<CatBreed> _mockBreeds = [
     const CatBreed(
       breedId: 'abys',
