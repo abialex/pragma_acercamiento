@@ -46,6 +46,7 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorRoles = context.colorRoles;
     final temperament = temperamentExtractor?.call(item) ?? '';
     final temperamentList = temperament.isNotEmpty ? temperament.split(',').map((e) => e.trim()).toList() : <String>[];
 
@@ -69,7 +70,7 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [Colors.black.withValues(alpha: 0.7), Colors.transparent, Colors.black.withValues(alpha: 0.8)],
+                            colors: [colorRoles.scrim.withValues(alpha: 0.7), Colors.transparent, colorRoles.scrim.withValues(alpha: 0.8)],
                           ),
                         ),
                       ),
@@ -102,19 +103,23 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: const AppIcon(Icons.arrow_back_ios_new, color: Colors.white, size: 20),
+                        icon: AppIcon(Icons.arrow_back_ios_new, color: colorRoles.onSurface, size: 20),
                         onPressed: onBack,
                       ),
                       Expanded(
                         child: AppText(
                           nameExtractor(item),
                           variant: AppTextStyle.h4,
-                          color: Colors.white,
+                          color: colorRoles.onSurface,
                           fontWeight: FontWeight.bold,
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      _FavoriteToggleAction(initialFavoriteActive: isFavoriteExtractor(item), onToggleFavorite: onToggleFavorite),
+                      _FavoriteToggleAction(
+                        initialFavoriteActive: isFavoriteExtractor(item),
+                        onToggleFavorite: onToggleFavorite,
+                        colorRoles: colorRoles,
+                      ),
                     ],
                   ),
                 ),
@@ -132,18 +137,13 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
                       const SizedBox(height: 24),
                       // Personality Tags
                       if (temperamentList.isNotEmpty) ...[
-                        const AppText(
-                          'PERSONALIDAD',
-                          variant: AppTextStyle.caption,
-                          color: Colors.indigoAccent,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        AppText('PERSONALIDAD', variant: AppTextStyle.caption, color: colorRoles.secondary, fontWeight: FontWeight.bold),
                         const SizedBox(height: 12),
                         Wrap(spacing: 8, runSpacing: 12, children: temperamentList.map((tag) => AppTag(label: tag)).toList()),
                         const SizedBox(height: 32),
                       ],
                       // Description
-                      AppText(descriptionExtractor(item), variant: AppTextStyle.body1, color: Colors.white70),
+                      AppText(descriptionExtractor(item), variant: AppTextStyle.body1, color: colorRoles.onSurfaceVariant),
                       const SizedBox(height: 32),
                       // Attributes
                       if (affectionLevelExtractor != null) ...[
@@ -183,9 +183,10 @@ class CatbreedsDetailPage<T> extends StatelessWidget {
 }
 
 class _FavoriteToggleAction extends StatefulWidget {
-  const _FavoriteToggleAction({required this.initialFavoriteActive, this.onToggleFavorite});
+  const _FavoriteToggleAction({required this.initialFavoriteActive, required this.colorRoles, this.onToggleFavorite});
 
   final bool initialFavoriteActive;
+  final ColorRoles colorRoles;
   final ValueChanged<bool>? onToggleFavorite;
 
   @override
@@ -218,7 +219,10 @@ class _FavoriteToggleActionState extends State<_FavoriteToggleAction> {
       valueListenable: _isFavoriteActiveNotifier,
       builder: (context, isActive, _) {
         return IconButton(
-          icon: AppIcon(isActive ? Icons.favorite : Icons.favorite_border, color: isActive ? Colors.deepPurpleAccent : Colors.white),
+          icon: AppIcon(
+            isActive ? Icons.favorite : Icons.favorite_border,
+            color: isActive ? widget.colorRoles.primary : widget.colorRoles.onSurface,
+          ),
           onPressed: _handleToggleFavorite,
         );
       },

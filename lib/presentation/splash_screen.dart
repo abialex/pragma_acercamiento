@@ -42,15 +42,15 @@ class _SplashPageState extends State<SplashPage> {
                 color: colorRoles.primary, // violet500
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.pets, // Placeholder for the actual cat icon
-                color: Colors.white,
+                color: colorRoles.onPrimary,
                 size: 60,
               ),
             ),
             const SizedBox(height: 24),
             // Catbreeds title
-            const AppText('Catbreeds', variant: AppTextStyle.h1, color: Colors.white, fontWeight: FontWeight.bold),
+            AppText('Catbreeds', variant: AppTextStyle.h1, color: colorRoles.onBackground, fontWeight: FontWeight.bold),
             const SizedBox(height: 8),
             // Subtitle
             AppText(

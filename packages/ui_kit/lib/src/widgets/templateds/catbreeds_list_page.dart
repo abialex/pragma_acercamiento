@@ -82,7 +82,7 @@ class _CatbreedsListPageState<T> extends State<CatbreedsListPage<T>> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const AppText('Catbreeds', variant: AppTextStyle.h3, color: Colors.white, fontWeight: FontWeight.bold),
+              AppText('Catbreeds', variant: AppTextStyle.h3, color: context.colorRoles.onSurface, fontWeight: FontWeight.bold),
               ValueListenableBuilder<bool>(
                 valueListenable: _isFavoriteActiveNotifier,
                 builder: (context, isActive, _) {
@@ -94,7 +94,7 @@ class _CatbreedsListPageState<T> extends State<CatbreedsListPage<T>> {
           const SizedBox(height: 24),
           AppLabeledTextField(
             hintText: 'Buscar raza en inglés...',
-            prefixIcon: AppIcon(Icons.search, color: Theme.of(context).extension<ColorRoles>()?.primary ?? Colors.purple, size: 20),
+            prefixIcon: AppIcon(Icons.search, color: context.colorRoles.primary, size: 20),
             onChanged: widget.onSearchChanged,
           ),
           const SizedBox(height: 24),
