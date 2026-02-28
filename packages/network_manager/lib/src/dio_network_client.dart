@@ -21,6 +21,9 @@ class AppDioNetworkClient implements AppNetworkClient {
     Future<Map<String, dynamic>> Function()? getParamsDynamic,
     String? xAppCode,
     bool isDebug = false,
+    bool enableApiKey = false,
+    String apiKeyHeaderName = 'X-API-Key',
+    String? apiKey,
   }) {
     _dio = Dio(
       BaseOptions(
@@ -58,6 +61,9 @@ class AppDioNetworkClient implements AppNetworkClient {
         getRefreshToken: getRefreshToken ?? () async => null,
         onLoadingChange: onLoadingChange ?? (isLoading) {},
         getParamsDynamic: getParamsDynamic ?? () async => {},
+        enableApiKey: enableApiKey,
+        apiKeyHeaderName: apiKeyHeaderName,
+        apiKey: apiKey,
       ),
       DioInterceptorErrorHandler(
         onUnauthorized: onUnauthorized ?? () {},

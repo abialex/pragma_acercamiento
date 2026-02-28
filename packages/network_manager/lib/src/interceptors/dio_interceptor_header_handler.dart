@@ -6,12 +6,18 @@ class DioInterceptorHeaderHandler extends Interceptor {
     required this.getRefreshToken,
     required this.onLoadingChange,
     required this.getParamsDynamic,
+    this.enableApiKey = false,
+    this.apiKeyHeaderName = 'X-API-Key',
+    this.apiKey,
   });
 
   final Future<String?> Function() getToken;
   final Future<String?> Function() getRefreshToken;
   final Function(bool) onLoadingChange;
   final Future<Map<String, dynamic>> Function() getParamsDynamic;
+  final bool enableApiKey;
+  final String apiKeyHeaderName;
+  final String? apiKey;
 
   @override
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
@@ -22,6 +28,11 @@ class DioInterceptorHeaderHandler extends Interceptor {
 
     if (tokenAccess != null && tokenAccess.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $tokenAccess';
+    }
+
+    // Agregar API_KEY si está habilitado y disponible
+    if (enableApiKey && apiKey != null && apiKey!.isNotEmpty) {
+      options.headers[apiKeyHeaderName] = apiKey;
     }
 
     options.headers['Content-Type'] = 'application/json';

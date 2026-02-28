@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:local_storage_manager/local_storage_manager.dart';
 import 'package:network_manager/network_manager.dart';
@@ -39,7 +40,12 @@ class InjectionContainer {
     // Network Client
     // =========================================================================
 
-    getItApp.registerSingleton<AppNetworkClient>(AppDioNetworkClient(baseUrl: FlavorConfig.apiBaseUrl, isDebug: FlavorConfig.isDev));
+    // Obtener API_KEY desde variables de entorno
+    final apiKey = dotenv.env['API_KEY'];
+
+    getItApp.registerSingleton<AppNetworkClient>(
+      AppDioNetworkClient(baseUrl: FlavorConfig.apiBaseUrl, isDebug: FlavorConfig.isDev, enableApiKey: true, apiKey: apiKey),
+    );
 
     // =========================================================================
     // Data Sources
