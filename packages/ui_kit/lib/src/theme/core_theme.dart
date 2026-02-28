@@ -16,7 +16,7 @@ class CoreTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       textTheme: textTheme,
-      fontFamily: 'NeueHaasUnica',
+      fontFamily: fontFamily,
 
       // ========================================================================
       // APP BAR
@@ -208,7 +208,7 @@ class CoreTheme {
           if (states.contains(WidgetState.selected)) {
             return colorScheme.primary;
           }
-          return colorScheme.surfaceVariant;
+          return colorScheme.surfaceContainerHighest;
         }),
       ),
 

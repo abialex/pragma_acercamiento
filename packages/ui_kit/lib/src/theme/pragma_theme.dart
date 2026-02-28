@@ -207,70 +207,29 @@ class PragmaTheme {
     white: ColorPrimitives.neutral0,
   );
 
-  /// ThemeData para modo claro
-  static ThemeData get lightTheme =>
-      CoreTheme.buildTheme(colorRoles: lightRoles, brightness: Brightness.light, fontFamily: 'NeueHaasUnica');
+  /// ColorRoles para modo oscuro con los colores de marca Pragma (violet/purple)
+  ///
+  /// Extiende [darkRoles] sobreescribiendo solo los tokens que Pragma
+  /// personaliza, manteniendo el resto del sistema de diseño intacto.
+  static ColorRoles get pragmaDarkRoles => darkRoles.copyWith(
+    primary: PragmaColors.violet500,
+    onPrimary: PragmaColors.white,
+    secondary: PragmaColors.violet600,
+    onSecondary: PragmaColors.white,
+    surface: PragmaColors.purple800,
+    onSurface: PragmaColors.white,
+    background: PragmaColors.purple900,
+    onBackground: PragmaColors.white,
+    surfaceContainer: PragmaColors.purple800,
+    onSurfaceVariant: PragmaColors.glassWhite,
+    outline: PragmaColors.white.withValues(alpha: 0.05),
+    surfaceTint: PragmaColors.violet500,
+  );
 
-  /// ThemeData para modo oscuro
-  static ThemeData get darkTheme {
-    return ThemeData(
-      brightness: Brightness.dark,
-      primaryColor: PragmaColors.violet500,
-      scaffoldBackgroundColor: PragmaColors.purple900,
-      colorScheme: const ColorScheme.dark(
-        primary: PragmaColors.violet500,
-        secondary: PragmaColors.violet600,
-        surface: PragmaColors.purple800,
-        background: PragmaColors.purple900,
-        onPrimary: PragmaColors.white,
-        onSurface: PragmaColors.white,
-        onBackground: PragmaColors.white,
-      ),
-      cardTheme: CardThemeData(
-        color: PragmaColors.purple800,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        elevation: 8,
-      ),
-      fontFamily: 'Inter',
-      extensions: <ThemeExtension<dynamic>>[
-        darkRoles.copyWith(
-          primary: PragmaColors.violet500,
-          onPrimary: PragmaColors.white,
-          secondary: PragmaColors.violet600,
-          background: PragmaColors.purple900,
-          surface: PragmaColors.purple800,
-          onBackground: PragmaColors.white,
-          onSurface: PragmaColors.white,
-          onSurfaceVariant: PragmaColors.glassWhite,
-          outline: PragmaColors.white.withValues(alpha: 0.05),
-        ),
-      ],
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: PragmaColors.purple800,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: PragmaColors.white.withValues(alpha: 0.1), width: 1),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: PragmaColors.white.withValues(alpha: 0.1), width: 1),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: PragmaColors.violet500, width: 1.5),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: ColorPrimitives.error500, width: 1),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: ColorPrimitives.error500, width: 2),
-        ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        hintStyle: const TextStyle(color: PragmaColors.glassWhite, fontWeight: FontWeight.w400),
-      ),
-    );
-  }
+  /// ThemeData para modo claro
+  static ThemeData get lightTheme => CoreTheme.buildTheme(colorRoles: lightRoles, brightness: Brightness.light, fontFamily: 'Inter');
+
+  /// ThemeData para modo oscuro — usa [pragmaDarkRoles] para aplicar
+  /// los colores de marca Pragma sobre la base de [darkRoles].
+  static ThemeData get darkTheme => CoreTheme.buildTheme(colorRoles: pragmaDarkRoles, brightness: Brightness.dark, fontFamily: 'Inter');
 }
