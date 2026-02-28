@@ -1,4 +1,8 @@
 # Catbreeds: Ejercicio de acercamiento al rol
+<p align="center">
+<img width="250"  alt="cat_1" src="https://github.com/user-attachments/assets/cf8e4e92-0924-4e23-a604-07ec7edc8d0c" />
+<img width="250"  alt="cat_2" src="https://github.com/user-attachments/assets/a0d7ac7b-7f56-454f-b6e6-4d8b69cb0243" />
+</p>
 
 ## 🌿 Branches del proyecto
 
@@ -8,6 +12,8 @@
 | `main`     | **Versión final entregable. Ejecutar esta rama para evaluar el proyecto.** |
 
 ## Requisitos
+
+
 
 - Flutter 3.35.7 (recomendado con FVM)
 
@@ -123,6 +129,10 @@ pragma_acercamiento/
 ```
 
 ### Testing
+Coverage
+<p align="center">
+<img width="600" height="200" alt="Code_7moJ3pbgDQ" src="https://github.com/user-attachments/assets/f28d5821-c2ee-4441-986a-dc63dfca2e96" />
+</p>
 
 ```bash
 # Ejecutar todos los tests
