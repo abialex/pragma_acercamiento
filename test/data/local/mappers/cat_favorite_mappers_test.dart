@@ -5,7 +5,7 @@ import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
 
 void main() {
   group('CatFavorite Mappers', () {
-    final tCatBreed = CatBreed(
+    const tCatBreed = CatBreed(
       breedId: 'abys',
       name: 'Abyssinian',
       origin: 'Egypt',

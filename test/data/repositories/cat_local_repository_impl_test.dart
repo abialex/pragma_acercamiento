@@ -24,7 +24,7 @@ void main() {
     repository = CatLocalRepositoryImpl(mockLocalStorage);
   });
 
-  final tCatBreed = CatBreed(
+  const tCatBreed = CatBreed(
     breedId: '1',
     name: 'Abyssinian',
     description: 'A cat',

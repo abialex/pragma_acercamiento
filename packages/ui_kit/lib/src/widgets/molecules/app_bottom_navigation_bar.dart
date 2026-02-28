@@ -56,8 +56,8 @@ class _BottomNavItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final activeColor = colorRoles?.primary ?? Colors.orange;
-    final inactiveColor = Colors.white;
-    final activeContentColor = Colors.white;
+    const inactiveColor = Colors.white;
+    const activeContentColor = Colors.white;
     final inactiveContentColor = colorRoles?.onSurface ?? const Color(0xFF0D1B2A);
 
     return AnimatedContainer(

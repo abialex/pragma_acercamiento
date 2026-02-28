@@ -26,26 +26,29 @@ class WidgetbookApp extends StatelessWidget {
 
       // Add-ons for different configurations
       addons: [
+        // Viewport add-on for responsive preview (must be first)
+        ViewportAddon([
+          Viewports.none,
+          IosViewports.iPhone13,
+          AndroidViewports.samsungGalaxyS20,
+          IosViewports.iPad,
+        ]),
+
         // Theme add-on with Light and Dark themes
         MaterialThemeAddon(
+          initialTheme: WidgetbookTheme(
+            name: 'Dark',
+            data: PragmaTheme.darkTheme,
+          ),
           themes: [
-            WidgetbookTheme(
-              name: 'Light',
-              data: PragmaTheme.lightTheme,
-            ),
             WidgetbookTheme(
               name: 'Dark',
               data: PragmaTheme.darkTheme,
             ),
-          ],
-        ),
-
-        // Device frame add-on for responsive preview
-        DeviceFrameAddon(
-          devices: [
-            Devices.ios.iPhone13,
-            Devices.android.samsungGalaxyS20,
-            Devices.ios.iPad,
+            WidgetbookTheme(
+              name: 'Light',
+              data: PragmaTheme.lightTheme,
+            ),
           ],
         ),
 

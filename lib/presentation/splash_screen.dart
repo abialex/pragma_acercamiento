@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
             const SizedBox(height: 24),
             // Catbreeds title
-            AppText('Catbreeds', variant: AppTextStyle.h1, color: Colors.white, fontWeight: FontWeight.bold),
+            const AppText('Catbreeds', variant: AppTextStyle.h1, color: Colors.white, fontWeight: FontWeight.bold),
             const SizedBox(height: 8),
             // Subtitle
             AppText(

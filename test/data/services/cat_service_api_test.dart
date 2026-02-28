@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_manager/network_manager.dart';
-import 'package:pragma_acercamiento/data/models/cat_filter_model.dart';
+import 'package:pragma_acercamiento/domain/models/cat_filter_model.dart';
 import 'package:pragma_acercamiento/data/services/cat_service.dart';
 
 void main() {
@@ -14,7 +14,7 @@ void main() {
     });
 
     test('should fetch breeds with limit and page filter', () async {
-      final filter = const CatFilterModel(limit: 10, page: 0);
+      const filter = CatFilterModel(limit: 10, page: 0);
       final response = await catService.getBreeds(filter: filter);
 
       expect(response.data, isNotEmpty);
@@ -22,7 +22,7 @@ void main() {
     });
 
     test('should search breeds by query', () async {
-      final filter = const CatFilterModel(search: 'si');
+      const filter = CatFilterModel(search: 'si');
       final response = await catService.getBreeds(filter: filter);
 
       expect(response.data, isNotEmpty);

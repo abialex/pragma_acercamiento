@@ -48,12 +48,12 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
       if (failure is FailureLocal) {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error local', body: AppText(failure.error)),
         );
       } else {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error api', body: AppText(failure.error)),
         );
       }
     });

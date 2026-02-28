@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pragma_acercamiento/core/error/failures.dart';
-import 'package:pragma_acercamiento/data/models/cat_filter_model.dart';
+import 'package:pragma_acercamiento/domain/models/cat_filter_model.dart';
 import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
 import 'package:pragma_acercamiento/domain/repositories/cat_repository.dart';
 import 'package:pragma_acercamiento/domain/repositories/i_cat_local_repository.dart';
@@ -19,7 +19,7 @@ void main() {
   late MockCatLocalRepository mockCatLocalRepository;
 
   setUp(() {
-    registerFallbackValue(CatBreed(breedId: 'fake', name: 'fake', origin: 'fake', intelligence: 0, imageUrl: ''));
+    registerFallbackValue(const CatBreed(breedId: 'fake', name: 'fake', origin: 'fake', intelligence: 0, imageUrl: ''));
     mockCatRepository = MockCatRepository();
     mockCatLocalRepository = MockCatLocalRepository();
     cubit = CatListCubit(mockCatRepository, mockCatLocalRepository);
@@ -29,7 +29,7 @@ void main() {
     cubit.close();
   });
 
-  final tCatBreed1 = CatBreed(
+  const tCatBreed1 = CatBreed(
     breedId: 'beng',
     name: 'Bengal',
     origin: 'US',
@@ -38,7 +38,7 @@ void main() {
     imageUrl: 'image1.jpg',
   );
 
-  final tCatBreed2 = CatBreed(
+  const tCatBreed2 = CatBreed(
     breedId: 'abys',
     name: 'Abyssinian',
     origin: 'Egypt',
@@ -84,7 +84,7 @@ void main() {
 
       test('emits [loading, error] when repository fails', () async {
         // Arrange
-        final failure = FailureApi(error: 'Server Error', statusCode: 500);
+        const failure = FailureApi(error: 'Server Error', statusCode: 500);
         when(() => mockCatRepository.getBreeds(filter: any(named: 'filter'))).thenAnswer((_) async => left(failure));
 
         // Act
@@ -135,7 +135,7 @@ void main() {
       test('adds to local favorites when not favorite', () async {
         // Arrange
         cubit.emit(cubit.state.copyWith(catsList: [tCatBreed1]));
-        when(() => mockCatLocalRepository.addFavorite(any())).thenAnswer((_) async => right(unit));
+        when(() => mockCatLocalRepository.addFavorite(any())).thenAnswer((_) async => right(null));
 
         // Act
         final result = await cubit.toggleFavorite(tCatBreed1.breedId);
@@ -148,7 +148,7 @@ void main() {
       test('removes from list directly if in favorites mode', () async {
         // Arrange
         cubit.emit(cubit.state.copyWith(isFavoritesMode: true, catsList: [tCatBreed1.copyWith(isFavorite: true)]));
-        when(() => mockCatLocalRepository.removeFavorite(any())).thenAnswer((_) async => right(unit));
+        when(() => mockCatLocalRepository.removeFavorite(any())).thenAnswer((_) async => right(null));
 
         // Act
         await cubit.toggleFavorite(tCatBreed1.breedId);

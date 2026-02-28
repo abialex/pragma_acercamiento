@@ -2,7 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import '../../core/error/failures.dart';
 import '../../domain/entities/cat_breed.dart';
 import '../../domain/repositories/cat_repository.dart';
-import '../models/cat_filter_model.dart';
+import '../../domain/models/cat_filter_model.dart';
 import '../services/cat_service.dart';
 
 class CatRepositoryImpl implements CatRepository {

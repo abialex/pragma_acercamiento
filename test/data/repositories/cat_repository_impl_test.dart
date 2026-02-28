@@ -5,7 +5,7 @@ import 'package:pragma_acercamiento/data/models/cats_list_response.dart';
 import 'package:pragma_acercamiento/data/repositories/cat_repository_impl.dart';
 import 'package:pragma_acercamiento/data/services/cat_service.dart';
 import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
-import 'package:pragma_acercamiento/data/models/cat_filter_model.dart';
+import 'package:pragma_acercamiento/domain/models/cat_filter_model.dart';
 
 class MockCatService extends Mock implements CatService {}
 
@@ -22,7 +22,7 @@ void main() {
   group('CatRepositoryImpl Test', () {
     test('getBreeds should map CatsListResponse to List<CatBreed>', () async {
       when(() => mockCatService.getBreeds(filter: any(named: 'filter'))).thenAnswer(
-        (_) async => CatsListResponse(
+        (_) async => const CatsListResponse(
           data: [
             CatItemResponse(id: 'beng', name: 'Bengal', origin: 'US', intelligence: 5, temperament: 'Active', referenceImageId: 'image123'),
           ],

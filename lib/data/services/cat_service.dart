@@ -1,5 +1,5 @@
 import 'package:network_manager/network_manager.dart';
-import '../models/cat_filter_model.dart';
+import '../../domain/models/cat_filter_model.dart';
 import '../models/cats_list_response.dart';
 
 class CatService {

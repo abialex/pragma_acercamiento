@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,27 +30,22 @@ class AppBackMobilHandler extends StatelessWidget {
             // AppLogger.logDebug('🚪 GoRouter mostrando diálogo de salida...');
           }
           // Si no hay páginas anteriores, mostrar diálogo de salida
-          bool shouldExit = await showDialog<bool>(
+          final bool shouldExit =
+              await showDialog<bool>(
                 context: context,
                 builder: (context) => AlertDialog(
                   title: const Text('¿Salir de la app?'),
                   content: const Text('¿Estás seguro de que quieres salir?'),
                   actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      child: const Text('Cancelar'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(true),
-                      child: const Text('Salir'),
-                    ),
+                    TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancelar')),
+                    TextButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Salir')),
                   ],
                 ),
               ) ??
               false;
 
           if (shouldExit) {
-            SystemNavigator.pop(); // Cerrar la app
+            unawaited(SystemNavigator.pop()); // Cerrar la app
           }
         }
       },

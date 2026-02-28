@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network_manager/network_manager.dart';
-import 'package:pragma_acercamiento/data/models/cat_filter_model.dart';
+import 'package:pragma_acercamiento/domain/models/cat_filter_model.dart';
 import 'package:pragma_acercamiento/data/models/cats_list_response.dart';
 import 'package:pragma_acercamiento/data/services/cat_service.dart';
 
@@ -80,7 +80,7 @@ void main() {
     test('getBreeds should pass correct query parameters', () async {
       when(() => mockNetworkClient.get(any(), queryParameters: any(named: 'queryParameters'))).thenAnswer((_) async => []);
 
-      final filter = CatFilterModel(search: 'si', limit: 10, page: 1);
+      const filter = CatFilterModel(search: 'si', limit: 10, page: 1);
       final result = await service.getBreeds(filter: filter);
 
       expect(result.data, []);

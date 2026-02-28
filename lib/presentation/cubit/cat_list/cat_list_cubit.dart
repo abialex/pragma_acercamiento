@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:pragma_acercamiento/domain/entities/cat_breed.dart';
-import '../../../data/models/cat_filter_model.dart';
+import '../../../domain/models/cat_filter_model.dart';
 import '../../../domain/repositories/cat_repository.dart';
 import '../../../domain/repositories/i_cat_local_repository.dart';
 import '../../../core/error/failures.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pragma_acercamiento/data/models/cat_filter_model.dart';
+import 'package:pragma_acercamiento/domain/models/cat_filter_model.dart';
 
 void main() {
   group('CatFilterModel', () {

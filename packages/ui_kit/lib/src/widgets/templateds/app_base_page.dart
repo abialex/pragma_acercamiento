@@ -87,29 +87,29 @@ class _AppBasePageState extends State<AppBasePage> {
     final colorRoles = Theme.of(context).extension<ColorRoles>();
     switch (type) {
       case AppBackgroundType.type1: // Rojo a Naranja (Splash / Principal)
-        return LinearGradient(
+        return const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            const Color(0xFFD84315), // Rojo-naranja (top)
-            const Color(0xFFE64A19), // Naranja rojizo
-            const Color(0xFFFF5722), // Naranja
-            const Color(0xFFFF6F00), // Naranja medio
-            const Color(0xFFFF8F00), // Naranja
-            const Color(0xFFFFAB40), // Naranja claro (bottom)
+            Color(0xFFD84315), // Rojo-naranja (top)
+            Color(0xFFE64A19), // Naranja rojizo
+            Color(0xFFFF5722), // Naranja
+            Color(0xFFFF6F00), // Naranja medio
+            Color(0xFFFF8F00), // Naranja
+            Color(0xFFFFAB40), // Naranja claro (bottom)
           ],
         );
       case AppBackgroundType.type2: // Naranja a Naranja Claro
-        return LinearGradient(
+        return const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            const Color(0xFFE64A19), // Rojo-naranja (top)
-            const Color(0xFFFF5722), // Naranja
-            const Color(0xFFFF7043), // Naranja medio
-            const Color(0xFFFF8A65), // Naranja claro
-            const Color(0xFFFFAB91), // Melocotón
-            const Color(0xFFFFCCBC), // Durazno claro (bottom)
+            Color(0xFFE64A19), // Rojo-naranja (top)
+            Color(0xFFFF5722), // Naranja
+            Color(0xFFFF7043), // Naranja medio
+            Color(0xFFFF8A65), // Naranja claro
+            Color(0xFFFFAB91), // Melocotón
+            Color(0xFFFFCCBC), // Durazno claro (bottom)
           ],
         );
       case AppBackgroundType.type3: // Oscuro (Gris a Carbon)

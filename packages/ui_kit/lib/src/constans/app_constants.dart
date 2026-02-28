@@ -1,3 +1,3 @@
 class AppConstants {
-  static final cardRadius = 12;
+  static const cardRadius = 12;
 }

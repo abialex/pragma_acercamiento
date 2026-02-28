@@ -8,7 +8,7 @@ import 'package:pragma_acercamiento/config/router/cat_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pragma_acercamiento/presentation/cubit/cat_list/cat_list_cubit.dart';
 import 'package:pragma_acercamiento/presentation/cubit/cat_list/cat_list_state.dart';
-import 'package:pragma_acercamiento/data/models/cat_filter_model.dart';
+import 'package:pragma_acercamiento/domain/models/cat_filter_model.dart';
 
 class CatListScreen extends StatefulWidget {
   const CatListScreen({super.key});
@@ -82,12 +82,12 @@ class _CatListScreenState extends State<CatListScreen> {
       if (failure is FailureLocal) {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error local', body: AppText(failure.error)),
         );
       } else {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error api', body: AppText(failure.error)),
         );
       }
     });
@@ -102,12 +102,12 @@ class _CatListScreenState extends State<CatListScreen> {
       if (failure is FailureLocal) {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error local', body: AppText(failure.error)),
         );
       } else {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error api', body: AppText(failure.error)),
         );
       }
     });
@@ -121,12 +121,12 @@ class _CatListScreenState extends State<CatListScreen> {
       if (failure is FailureLocal) {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error local", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error local', body: AppText(failure.error)),
         );
       } else {
         showDialog(
           context: context,
-          builder: (context) => AppErrorDialog(title: "Error api", body: AppText(failure.error)),
+          builder: (context) => AppErrorDialog(title: 'Error api', body: AppText(failure.error)),
         );
       }
     });

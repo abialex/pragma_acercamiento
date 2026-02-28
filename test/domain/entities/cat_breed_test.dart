@@ -22,7 +22,7 @@ void main() {
 
   group('CatBreed', () {
     test('should support value equality', () {
-      final tCatBreed2 = CatBreed(
+      const tCatBreed2 = CatBreed(
         breedId: 'beng',
         name: 'Bengal',
         origin: 'United States',
@@ -40,14 +40,14 @@ void main() {
         isFavorite: false,
       );
 
-      final tCatBreedDifferent = CatBreed(breedId: 'abys', name: 'Abyssinian');
+      const tCatBreedDifferent = CatBreed(breedId: 'abys', name: 'Abyssinian');
 
       expect(tCatBreed, equals(tCatBreed2));
       expect(tCatBreed, isNot(equals(tCatBreedDifferent)));
     });
 
     test('should have a correct hashCode', () {
-      final tCatBreed2 = CatBreed(
+      const tCatBreed2 = CatBreed(
         breedId: 'beng',
         name: 'Bengal',
         origin: 'United States',

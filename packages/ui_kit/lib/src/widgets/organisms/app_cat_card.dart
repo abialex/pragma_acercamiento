@@ -83,7 +83,7 @@ class AppCatCard extends StatelessWidget {
                   // Origen
                   Row(
                     children: [
-                      AppIcon(
+                      const AppIcon(
                         Icons.language, // Globo para simular país
                         // color: colorRoles.primary,
                         size: 20,
@@ -95,7 +95,7 @@ class AppCatCard extends StatelessWidget {
                   // Inteligencia
                   Row(
                     children: [
-                      AppIcon(
+                      const AppIcon(
                         Icons.psychology, // Cerebro para simular inteligencia
                         size: 20,
                       ),

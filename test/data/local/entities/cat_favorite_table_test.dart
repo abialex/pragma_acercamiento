@@ -47,7 +47,7 @@ void main() {
     final catFavorite = CatFavoriteTable(breedId: 'abys', name: 'Abyssinian', origin: 'Egypt', intelligence: 5);
     catFavorite.id = 1;
 
-    final expectedString = 'CatFavoriteTable(id: 1, breedId: abys, name: Abyssinian, origin: Egypt, intelligence: 5)';
+    const expectedString = 'CatFavoriteTable(id: 1, breedId: abys, name: Abyssinian, origin: Egypt, intelligence: 5)';
     expect(catFavorite.toString(), equals(expectedString));
   });
 }
