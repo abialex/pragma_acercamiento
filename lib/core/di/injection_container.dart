@@ -3,8 +3,6 @@ import 'package:local_storage_manager/local_storage_manager.dart';
 import 'package:network_manager/network_manager.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pragma_acercamiento/objectbox.g.dart';
-import 'package:pragma_acercamiento/data/datasources/cat_remote_datasource_impl.dart';
-import 'package:pragma_acercamiento/data/datasources/i_cat_remote_datasource.dart';
 import 'package:pragma_acercamiento/data/repositories/cat_local_repository_impl.dart';
 import 'package:pragma_acercamiento/domain/repositories/i_cat_local_repository.dart';
 import 'package:pragma_acercamiento/flavors/flavor_config.dart';
@@ -47,7 +45,6 @@ class InjectionContainer {
     // Data Sources
     // =========================================================================
 
-    getItApp.registerLazySingleton<ICatRemoteDataSource>(() => const CatRemoteDataSourceImpl());
     getItApp.registerLazySingleton<CatService>(() => CatService(getItApp<AppNetworkClient>()));
 
     // =========================================================================

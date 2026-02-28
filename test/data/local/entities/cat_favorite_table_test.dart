@@ -43,4 +43,11 @@ void main() {
     expect(savedCat.imageUrl, equals('https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg'));
     expect(savedCat.nameLowerCase, equals('abyssinian'));
   });
+  test('Debería retornar el formato correcto en toString', () {
+    final catFavorite = CatFavoriteTable(breedId: 'abys', name: 'Abyssinian', origin: 'Egypt', intelligence: 5);
+    catFavorite.id = 1;
+
+    final expectedString = 'CatFavoriteTable(id: 1, breedId: abys, name: Abyssinian, origin: Egypt, intelligence: 5)';
+    expect(catFavorite.toString(), equals(expectedString));
+  });
 }
